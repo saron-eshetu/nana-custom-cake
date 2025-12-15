@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery - Nana Custom Cake</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrapper">
+      <div class="logo">Nana Custom Cake</div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="order-confirmation-form.html">Service Request</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section gallery-section">
+      <div class="section-bar">
+        <h2>Gallery</h2>
+      </div>
+      <p class="section-intro">Some of our favorite creations made with love.</p>
+      <div class="gallery-grid">
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6221.jpg" data-alt="Custom cake IMG 6221">
+            <img src="Images/IMG_6221.jpg" alt="Custom cake IMG 6221" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6223.jpg" data-alt="Custom cake IMG 6223">
+            <img src="Images/IMG_6223.jpg" alt="Custom cake IMG 6223" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6224.jpg" data-alt="Custom cake IMG 6224">
+            <img src="Images/IMG_6224.jpg" alt="Custom cake IMG 6224" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6236.jpg" data-alt="Custom cake IMG 6236">
+            <img src="Images/IMG_6236.jpg" alt="Custom cake IMG 6236" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6237.jpg" data-alt="Custom cake IMG 6237">
+            <img src="Images/IMG_6237.jpg" alt="Custom cake IMG 6237" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6239.jpg" data-alt="Custom cake IMG 6239">
+            <img src="Images/IMG_6239.jpg" alt="Custom cake IMG 6239" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6242.jpg" data-alt="Custom cake IMG 6242">
+            <img src="Images/IMG_6242.jpg" alt="Custom cake IMG 6242" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6243.jpg" data-alt="Custom cake IMG 6243">
+            <img src="Images/IMG_6243.jpg" alt="Custom cake IMG 6243" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6244.jpg" data-alt="Custom cake IMG 6244">
+            <img src="Images/IMG_6244.jpg" alt="Custom cake IMG 6244" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6245.jpg" data-alt="Custom cake IMG 6245">
+            <img src="Images/IMG_6245.jpg" alt="Custom cake IMG 6245" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/IMG_6246.jpg" data-alt="Custom cake IMG 6246">
+            <img src="Images/IMG_6246.jpg" alt="Custom cake IMG 6246" loading="lazy" />
+          </button>
+          <figcaption>Custom Cake</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/10F346DD-6981-40DD-A84A-D23981FC2D9C.PNG" data-alt="Custom cake 10F346DD">
+            <img src="Images/10F346DD-6981-40DD-A84A-D23981FC2D9C.PNG" alt="Custom cake 10F346DD" loading="lazy" />
+          </button>
+          <figcaption>Custom Design</figcaption>
+        </figure>
+        <figure>
+          <button class="gallery-item" type="button" data-fullsrc="Images/CCFA4C0A-8DCA-4ECE-BFD3-65F242951224.PNG" data-alt="Custom cake CCFA4C0A">
+            <img src="Images/CCFA4C0A-8DCA-4ECE-BFD3-65F242951224.PNG" alt="Custom cake CCFA4C0A" loading="lazy" />
+          </button>
+          <figcaption>Custom Design</figcaption>
+        </figure>
+      </div>
+
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-backdrop" data-lightbox-close></div>
+        <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image preview">
+          <button class="lightbox-close" type="button" aria-label="Close" data-lightbox-close>×</button>
+          <img class="lightbox-image" id="lightboxImage" alt="" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-meta">
+        <a class="site-footer-item" href="https://instagram.com/nanacustomcake" target="_blank" rel="noopener" aria-label="Instagram">
+          <img class="site-footer-icon" src="img/instagram.svg" alt="" aria-hidden="true" />
+          <span>@nanacustomcake</span>
+        </a>
+
+        <a class="site-footer-item" href="mailto:saron3255@gmail.com">
+          <span class="site-footer-key">Email:</span>
+          <span>saron3255@gmail.com</span>
+        </a>
+
+        <div class="site-footer-item" aria-label="Location">
+          <span class="site-footer-key">Location:</span>
+          <span>Los Angeles</span>
+        </div>
+      </div>
+
+      <p class="site-footer-small">© Nana Custom Cake | Made with love in LA</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

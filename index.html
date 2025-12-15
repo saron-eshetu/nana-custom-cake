@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nana Custom Cake</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrapper">
+      <div class="logo">Nana Custom Cake</div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="order-confirmation-form.html">Service Request</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <h1>Beautiful custom cakes, made with care.</h1>
+        <p>Hand-crafted cakes for birthdays, weddings, baby showers, and every sweet moment in between.</p>
+        <p>We create elegant, delicious custom cakes tailored to your celebration.
+        From simple modern designs to beautiful themed cakes, everything is baked fresh with quality ingredients.</p>
+        <div class="hero-actions">
+          <a href="order-confirmation-form.html" class="primary-btn">Order a Cake</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="Images/10F346DD-6981-40DD-A84A-D23981FC2D9C.PNG" alt="Custom cake" />
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section story-section">
+      <h2>Made with love </h2>
+    </section>
+
+    <section id="pricing" class="section pricing-section">
+      <div class="section-bar">
+        <h2>Pricing &amp; Delivery Estimate</h2>
+      </div>
+      <div class="pricing-layout">
+        <div class="pricing-left">
+          <p class="section-intro">
+            Choose guest count, flavor type, decoration level, and pickup or delivery for your celebration.
+          </p>
+
+          <div class="calculator-form">
+            <label>
+              How many guests?
+              <input type="number" id="guestCount" min="1" step="1" placeholder="e.g. 30" />
+            </label>
+
+            <label>
+              Flavor type
+              <select id="flavorType">
+                <option value="normal">Normal</option>
+                <option value="specialty">Specialty flavors</option>
+              </select>
+            </label>
+
+            <label>
+              Decoration level
+              <select id="decorationLevel">
+                <option value="0">Simple</option>
+                <option value="0">Detailed</option>
+                <option value="0">Premium</option>
+              </select>
+            </label>
+
+            <label>
+              Pickup or delivery
+              <select id="deliveryMethod">
+                <option value="pickup">Pickup (Free)</option>
+                <option value="delivery">Delivery</option>
+              </select>
+            </label>
+
+            <label>
+              Delivery ZIP code
+              <input type="text" id="deliveryZip" inputmode="numeric" maxlength="10" placeholder="e.g. 90005" />
+            </label>
+
+            <button id="calculateBtn" class="primary-btn">Get instant estimate</button>
+          </div>
+        </div>
+
+        <div class="pricing-right">
+          <div class="calculator-result">
+            <h3>Your Estimate</h3>
+            <p><span>Base Cake</span> <span id="basePrice">$0</span></p>
+            <p><span>Decoration</span> <span id="decorationPrice">$0</span></p>
+            <p class="row-delivery"><span>Delivery</span> <span id="deliveryPrice">$0</span></p>
+            <hr />
+            <p class="total"><span>Total Estimate</span> <span id="totalPrice">$0</span></p>
+            <p class="note">Estimate is based on a simple design. Detailed or premium decoration may increase the final price.</p>
+          </div>
+
+          <div class="why-card">
+            <h3>Why customers love us</h3>
+            <ul>
+              <li>Clean, modern cake designs</li>
+              <li>Fresh, high-quality ingredients</li>
+              <li>Reliable pickup & delivery</li>
+              <li>Professional, easy ordering process</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="site-footer-meta">
+        <a class="site-footer-item" href="https://instagram.com/nanacustomcake" target="_blank" rel="noopener" aria-label="Instagram">
+          <img class="site-footer-icon" src="img/instagram.svg" alt="" aria-hidden="true" />
+          <span>@nanacustomcake</span>
+        </a>
+
+        <a class="site-footer-item" href="mailto:saron3255@gmail.com">
+          <span class="site-footer-key">Email:</span>
+          <span>saron3255@gmail.com</span>
+        </a>
+
+        <div class="site-footer-item" aria-label="Location">
+          <span class="site-footer-key">Location:</span>
+          <span>Los Angeles</span>
+        </div>
+      </div>
+
+      <p class="site-footer-small">© Nana Custom Cake | Made with love in LA</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

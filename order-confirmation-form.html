@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nana Custom Cake – Order Confirmation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; min-height: 100vh; color: #1f2937; background-color: #ffffff;
+      /* Soft overlay + image (image path has a fallback) */
+      background-image: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.65) 40%, rgba(255,255,255,0.85) 100%), url('assets/cake-background.png'), url('cake-background.png');
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-position: center bottom, center bottom, center bottom;
+      background-size: 100% 100%, 100% auto, 100% auto; /* full-width image with soft overlay */
+      padding-bottom: 300px; /* more spacing so it feels farther away */
+    }
+    .oc-header { background: transparent; border-bottom: 1px solid #f2d9e5; }
+    .oc-nav-wrapper { max-width: 1100px; margin: 0 auto; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .oc-logo { font-family: "Playfair Display", serif; font-weight: 800; font-size: 1.7rem; letter-spacing: 0.03em; color: #e07ba3; text-decoration: none; white-space: nowrap; }
+    .oc-nav-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .oc-nav-links a { font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; text-decoration: none; color: #8b6b7a; font-weight: 600; font-size: 0.95rem; padding: 6px 12px; border-radius: 999px; transition: background .2s ease, color .2s ease; }
+    .oc-nav-links a:hover { background-color: #ffe3f1; color: #e07ba3; }
+    @media (max-width: 1024px) { body { background-size: 100% 100%, 100% auto, 100% auto; padding-bottom: 240px; } }
+    @media (max-width: 640px)  { body { background-size: 100% 100%, 100% auto, 100% auto; padding-bottom: 180px; } }
+    .container { max-width: 720px; margin: 32px auto; padding: 32px; background: rgba(255,255,255,0.96); border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+    h1 { font-size: 28px; font-weight: 800; margin: 0 0 18px; letter-spacing: 0.1px; }
+    p.helper { margin: 0 0 20px; color: #6b7280; font-size: 14px; }
+    form { display: grid; gap: 16px; }
+    .row { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .row.two { grid-template-columns: 1fr 1fr; } }
+    label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px; color: #374151; }
+    input, select, button, textarea { font: inherit; }
+    input[type="text"], input[type="number"], input[type="date"], input[type="time"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #e5e7eb; background: #fff; color: inherit; outline: none; transition: box-shadow .15s, border-color .15s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #a78bfa; box-shadow: 0 0 0 4px rgba(167,139,250,.2); }
+    .radio-group { display: flex; gap: 16px; flex-wrap: wrap; }
+    .card, .zelle { border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px; background: transparent; }
+    .hidden { display: none; }
+    .actions { display: flex; gap: 12px; align-items: center; justify-content: flex-end; margin-top: 8px; }
+    .btn { padding: 10px 16px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; }
+    .btn.primary { background: #8b5cf6; color: white; }
+    .btn.secondary { background: #f3f4f6; color: #111827; }
+    .btn:disabled { opacity: .6; cursor: not-allowed; }
+    .note { font-size: 12px; color: #6b7280; }
+    .required::after { content: " *"; color: #ef4444; }
+    .success { background: #ecfdf5; border: 1px solid #10b981; color: #065f46; padding: 12px 14px; border-radius: 10px; }
+    .summary { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; font-size: 14px; }
+    .brand { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; margin-bottom: 14px; }
+    .logo { width: 36px; height: 36px; border-radius: 9px; background: linear-gradient(135deg,#fda4af,#fde68a); display: grid; place-items: center; font-weight: 700; color: #7c2d12; }
+    .top-zelle { background: #fff7ed; border: 1px solid #fdba74; color: #7c2d12; padding: 12px 14px; border-radius: 10px; margin-bottom: 14px; }
+    .section { border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px; background: transparent; }
+    .flavors { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px 16px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; background: #eef2ff; color: #3730a3; font-size: 12px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <header class="oc-header">
+    <div class="oc-nav-wrapper">
+      <a class="oc-logo" href="index.html">Nana Custom Cake</a>
+      <nav class="oc-nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="menu.html">Menu</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="order-confirmation-form.html">Service Request</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <div class="brand">
+      <div class="logo">NC</div>
+      <div>
+        <h1>Nana Custom Cake – Order Confirmation</h1>
+        <p class="helper">Please confirm the details below. We will reach out to finalize your design and delivery.</p>
+      </div>
+    </div>
+
+   
+    <form id="orderForm" action="https://formspree.io/f/mpwkpnoj" method="POST" novalidate>
+      <input type="hidden" id="_subjectField" name="_subject" value="New Nana Custom Cake Order Confirmation">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="thank_you.html">
+      <input type="hidden" name="_replyto" id="_replyto">
+      <textarea id="order_summary" name="Order Summary" class="hidden"></textarea>
+      <input type="text" name="_honey" style="display:none">
+      <div class="row two">
+        <div class="field">
+          <label class="required" for="occasion">Occasion</label>
+          <input id="occasion" name="occasion" type="text" placeholder="e.g., Birthday, Wedding, Baby Shower" required>
+        </div>
+        <div class="field">
+          <label class="required" for="people">How many people</label>
+          <input id="people" name="people" type="number" min="1" step="1" placeholder="e.g., 25" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="cakeStyle">Cake style if it's Tier Cake (optional)</label>
+          <div class="radio-group" id="cakeStyle">
+            <label><input type="radio" name="cake_style" value="taller"> Taller (modern style)</label>
+            <label><input type="radio" name="cake_style" value="wider"> Wider</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label class="required">Cake type</label>
+          <div class="radio-group">
+            <label><input type="radio" name="cake_type" value="tier" required> Tier cake</label>
+            <label><input type="radio" name="cake_type" value="sheet" required> Sheet cake</label>
+            <label><input type="radio" name="cake_type" value="cupcakes" required> Cupcakes</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="tierBox" class="section hidden">
+        <div class="row two">
+          <div class="field">
+            <label class="required" for="tier_count">How many tiers</label>
+            <input id="tier_count" name="tier_count" type="number" min="1" max="5" step="1" placeholder="e.g., 2">
+            <div class="note" id="tierFlavorNote">Select the same number of flavors as tiers.</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <div class="badge">Choose flavors</div>
+            <div class="flavors" id="tierFlavors">
+              <label><input type="checkbox" name="tier_flavors" value="Vanilla"> Vanilla</label>
+              <label><input type="checkbox" name="tier_flavors" value="Chocolate"> Chocolate</label>
+              <label><input type="checkbox" name="tier_flavors" value="Lemon"> Lemon</label>
+              <label><input type="checkbox" name="tier_flavors" value="Vanilla Bavarian"> Vanilla Bavarian</label>
+              <label><input type="checkbox" name="tier_flavors" value="Nutella"> Nutella</label>
+              <label><input type="checkbox" name="tier_flavors" value="Cappucino"> Cappucino</label>
+              <label><input type="checkbox" name="tier_flavors" value="Mocha"> Mocha</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sheetBox" class="section hidden">
+        <div class="row">
+          <div class="field">
+            <div class="badge">Choose flavors</div>
+            <div class="flavors">
+              <label><input type="checkbox" name="sheet_flavors" value="Vanilla"> Vanilla</label>
+              <label><input type="checkbox" name="sheet_flavors" value="Chocolate"> Chocolate</label>
+              <label><input type="checkbox" name="sheet_flavors" value="Lemon"> Lemon</label>
+              <label><input type="checkbox" name="sheet_flavors" value="Vanilla Bavarian"> Vanilla Bavarian</label>
+              <label><input type="checkbox" name="sheet_flavors" value="Nutella"> Nutella</label>
+              <label><input type="checkbox" name="tier_flavors" value="Cappucino"> Cappucino</label>
+              <label><input type="checkbox" name="tier_flavors" value="Mocha"> Mocha</label>
+            </div>
+            <div style="margin-top:8px;">
+              <label><input type="checkbox" name="sheet_tres_leches" value="Yes"> Add Tres Leches</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="cupcakesBox" class="section hidden">
+        <div class="row two">
+          <div class="field">
+            <label class="required">Cupcake type</label>
+            <div class="radio-group">
+              <label><input type="radio" name="cupcakes_variant" value="regular"> Regular cupcakes</label>
+              <label><input type="radio" name="cupcakes_variant" value="bouquet"> Custom bouquet</label>
+            </div>
+          </div>
+          <div class="field">
+            <label class="required" for="cupcakes_quantity">How many</label>
+            <input id="cupcakes_quantity" name="cupcakes_quantity" type="number" min="1" step="1" placeholder="e.g., 12">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <div class="badge">Choose flavors</div>
+            <div class="flavors">
+              <label><input type="checkbox" name="cupcakes_flavors" value="Vanilla"> Vanilla</label>
+              <label><input type="checkbox" name="cupcakes_flavors" value="Chocolate"> Chocolate</label>
+              <label><input type="checkbox" name="cupcakes_flavors" value="Vanilla Bavarian"> Vanilla Bavarian</label>
+              <label><input type="checkbox" name="cupcakes_flavors" value="Nutella"> Nutella</label>
+              <label><input type="checkbox" name="cupcakes_flavors" value="Cappucino"> Cappucino</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row two">
+        <div class="field">
+          <label class="required" for="date">Delivery date</label>
+          <input id="date" name="date" type="date" required>
+        </div>
+        <div class="field">
+          <label class="required" for="time">Delivery time</label>
+          <input id="time" name="time" type="time" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="nameOnCake">Name on the cake (optional)</label>
+          <input id="nameOnCake" name="nameOnCake" type="text" placeholder="e.g., Sophia">
+        </div>
+      </div>
+
+      <div class="row two">
+        <div class="field">
+          <label class="required" for="customerName">Your full name</label>
+          <input id="customerName" name="customerName" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label class="required" for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="(###) ###-####" required>
+        </div>
+      </div>
+
+      <div class="row two">
+        <div class="field">
+          <label class="required" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="notes">Design notes (optional)</label>
+          <input id="notes" name="notes" type="text" placeholder="Colors, flavors, allergies, etc.">
+        </div>
+      </div>
+
+      <div class="row">
+         <div class="top-zelle">
+      <strong>Zelle for deposit:</strong> <strong>Saron E Feyisa, Phone: 323 805 3266</strong>
+    </div>
+        <div class="field">
+          <label class="required">Deposit payment preference</label>
+          <div class="radio-group">
+            <label><input type="radio" name="paymentMethod" value="card" required> Card</label>
+            <label><input type="radio" name="paymentMethod" value="zelle" required> Zelle</label>
+          </div>
+          <div class="note">We do not collect card numbers here. For card, you will be taken to a secure checkout link.</div>
+        </div>
+      </div>
+
+      <div id="cardBox" class="card hidden">
+        <div class="row two">
+          <div class="field">
+            <label class="required" for="cardName">Cardholder name</label>
+            <input id="cardName" name="cardName" type="text" placeholder="Name on card">
+          </div>
+          <div class="field">
+            <label class="required" for="billingEmail">Billing email</label>
+            <input id="billingEmail" name="billingEmail" type="email" placeholder="billing@example.com">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <a id="payCardLink" class="btn secondary" href="https://square.link/u/your-checkout-link" target="_blank" rel="noopener">Pay deposit via Square (opens in new tab)</a>
+            <div class="note">Replace the link above with your Square checkout URL. You can submit the form even if you have not paid yet.</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="zelleBox" class="zelle hidden">
+        <div class="row two">
+          <div class="field">
+            <label class="required" for="zelleName">Zelle sender name</label>
+            <input id="zelleName" name="zelleName" type="text" placeholder="Name on your Zelle account">
+          </div>
+          <div class="field">
+            <label class="required" for="zelleHandle">Zelle phone or email</label>
+            <input id="zelleHandle" name="zelleHandle" type="text" placeholder="Phone or email used for Zelle">
+          </div>
+        </div>
+        <div class="note">Send deposit via Zelle to: <strong id="zelleRecipient">Saron E Feyisa, Phone: 323 805 3266</strong><br>You can submit the form now and complete the deposit later.</div>
+      </div>
+
+      <div class="actions">
+        <button type="reset" class="btn secondary">Clear</button>
+        <button type="submit" class="btn primary">Submit confirmation</button>
+      </div>
+    </form>
+
+    <div id="result" class="hidden" style="margin-top:18px;">
+      <div class="success">Thank you! Your order confirmation has been received. We will contact you shortly.</div>
+      <div class="summary" id="summary" style="margin-top:12px;"></div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('orderForm');
+    const cardBox = document.getElementById('cardBox');
+    const zelleBox = document.getElementById('zelleBox');
+    const result = document.getElementById('result');
+    const summary = document.getElementById('summary');
+
+    function show(el) { el.classList.remove('hidden'); }
+    function hide(el) { el.classList.add('hidden'); }
+
+    function getPaymentMethod() {
+      const v = form.querySelector('input[name="paymentMethod"]:checked');
+      return v ? v.value : '';
+    }
+
+    function getCakeType() {
+      const v = form.querySelector('input[name="cake_type"]:checked');
+      return v ? v.value : '';
+    }
+
+    const tierBox = document.getElementById('tierBox');
+    const sheetBox = document.getElementById('sheetBox');
+    const cupcakesBox = document.getElementById('cupcakesBox');
+    const tierCountInput = document.getElementById('tier_count');
+    const tierFlavorNote = document.getElementById('tierFlavorNote');
+
+    function showCakeSection(type) {
+      hide(tierBox); hide(sheetBox); hide(cupcakesBox);
+      if (type === 'tier') show(tierBox);
+      if (type === 'sheet') show(sheetBox);
+      if (type === 'cupcakes') show(cupcakesBox);
+    }
+
+    function countChecked(name) {
+      return [...form.querySelectorAll(`input[name="${name}"]:checked`)].length;
+    }
+
+    function enforceTierFlavorLimit() {
+      const tiers = parseInt(tierCountInput.value || '0', 10);
+      const boxes = [...form.querySelectorAll('input[name="tier_flavors"]')];
+      const selected = boxes.filter(b => b.checked);
+      if (tiers > 0) {
+        tierFlavorNote.textContent = `Select ${tiers} flavor${tiers>1?'s':''} for ${tiers} tier${tiers>1?'s':''}.`;
+      } else {
+        tierFlavorNote.textContent = 'Select the same number of flavors as tiers.';
+      }
+      if (tiers > 0 && selected.length > tiers) {
+        // Uncheck the most recently checked beyond the limit
+        const last = selected[selected.length - 1];
+        last.checked = false;
+      }
+    }
+
+    form.addEventListener('change', (e) => {
+      if (e.target.name === 'paymentMethod') {
+        const m = getPaymentMethod();
+        if (m === 'card') { show(cardBox); hide(zelleBox); }
+        else if (m === 'zelle') { show(zelleBox); hide(cardBox); }
+      }
+      if (e.target.name === 'cake_type') {
+        showCakeSection(getCakeType());
+      }
+      if (e.target.id === 'tier_count' || e.target.name === 'tier_flavors') {
+        enforceTierFlavorLimit();
+      }
+    });
+
+    form.addEventListener('reset', () => {
+      hide(cardBox); hide(zelleBox); hide(result);
+      summary.innerHTML = '';
+    });
+
+    function validateForm() {
+      const requiredIds = ['occasion','people','date','time','customerName','phone','email'];
+      for (const id of requiredIds) {
+        const el = document.getElementById(id);
+        if (!el.value) return false;
+      }
+      // Cake type validation
+      const cakeType = getCakeType();
+      if (!cakeType) return false;
+      if (cakeType === 'tier') {
+        const tiers = parseInt((tierCountInput.value||'0'), 10);
+        if (!tiers || tiers < 1) return false;
+        if (countChecked('tier_flavors') !== tiers) return false;
+      }
+      if (cakeType === 'sheet') {
+        if (countChecked('sheet_flavors') < 1) return false;
+      }
+      if (cakeType === 'cupcakes') {
+        const variant = form.querySelector('input[name="cupcakes_variant"]:checked');
+        if (!variant) return false;
+        const qty = parseInt((form.cupcakes_quantity.value||'0'), 10);
+        if (!qty || qty < 1) return false;
+        if (countChecked('cupcakes_flavors') < 1) return false;
+      }
+      const method = getPaymentMethod();
+      if (!method) return false;
+      return true;
+    }
+
+    function format(k, v) { return `<div><strong>${k}:</strong> ${v || '-'}</div>`; }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validateForm()) {
+        alert('Please complete all required fields.');
+        return;
+      }
+      // Set reply-to to customer's email
+      const replyTo = document.getElementById('_replyto');
+      if (replyTo) replyTo.value = (document.getElementById('email')?.value || '');
+
+      // Build a concise summary for the email body top
+      const lines = [];
+      const cakeType = getCakeType();
+      const pm = getPaymentMethod();
+      // Dynamic subject using key fields
+      const subjEl = document.getElementById('_subjectField');
+      const occ = document.getElementById('occasion')?.value || 'Order';
+      const when = document.getElementById('date')?.value || '';
+      const who = document.getElementById('customerName')?.value || '';
+      if (subjEl) subjEl.value = `Cake Order – ${occ}${when? ' • '+when : ''}${who? ' • '+who : ''}`;
+      lines.push(`Occasion: ${document.getElementById('occasion')?.value || '-'}`);
+      lines.push(`People: ${document.getElementById('people')?.value || '-'}`);
+      lines.push(`Date: ${document.getElementById('date')?.value || '-'}  Time: ${document.getElementById('time')?.value || '-'}`);
+      lines.push(`Cake type: ${cakeType || '-'}`);
+      if (cakeType === 'tier') {
+        lines.push(`Tiers: ${document.getElementById('tier_count')?.value || '-'}`);
+        const tf = [...form.querySelectorAll('input[name="tier_flavors"]:checked')].map(i=>i.value).join(', ');
+        lines.push(`Tier flavors: ${tf || '-'}`);
+      }
+      if (cakeType === 'sheet') {
+        const sf = [...form.querySelectorAll('input[name="sheet_flavors"]:checked')].map(i=>i.value).join(', ');
+        const tl = form.querySelector('input[name="sheet_tres_leches"]:checked') ? 'Yes' : 'No';
+        lines.push(`Sheet flavors: ${sf || '-'}`);
+        lines.push(`Add Tres Leches: ${tl}`);
+      }
+      if (cakeType === 'cupcakes') {
+        const variant = form.querySelector('input[name="cupcakes_variant"]:checked')?.value || '-';
+        const qty = document.getElementById('cupcakes_quantity')?.value || '-';
+        const cf = [...form.querySelectorAll('input[name="cupcakes_flavors"]:checked')].map(i=>i.value).join(', ');
+        lines.push(`Cupcakes: ${variant}, Qty: ${qty}`);
+        lines.push(`Cupcake flavors: ${cf || '-'}`);
+      }
+      lines.push(`Name on cake: ${document.getElementById('nameOnCake')?.value || '-'}`);
+      lines.push(`Customer: ${document.getElementById('customerName')?.value || '-'}  Phone: ${document.getElementById('phone')?.value || '-'}  Email: ${document.getElementById('email')?.value || '-'}`);
+      lines.push(`Notes: ${document.getElementById('notes')?.value || '-'}`);
+      lines.push(`Payment method: ${pm || '-'}`);
+
+      const summaryField = document.getElementById('order_summary');
+      if (summaryField) summaryField.value = lines.join('\n');
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+      }
+      try {
+        const data = new FormData(form);
+        await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        window.location.href = 'thank_you.html';
+      } catch (err) {
+        window.location.href = 'thank_you.html';
+      }
+    });
+
+    (function initMinDate() {
+      const d = document.getElementById('date');
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      d.min = `${yyyy}-${mm}-${dd}`;
+    })();
+  </script>
+</body>
+</html>
