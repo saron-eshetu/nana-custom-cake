@@ -272,6 +272,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    if (guestCount < 15) {
+      alert("Minimum order is 15 guests.");
+      return;
+    }
+
     const isSmallOrder = guestCount < 50;
     const perGuest = (() => {
       if (isSmallOrder) return flavorType === "specialty" ? 6 : 5;
@@ -306,7 +311,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const miles = haversineMiles(origin.lat, origin.lon, destination.lat, destination.lon);
-      deliveryPrice = Math.max(DELIVERY_MINIMUM, miles * 2);
+      if (miles <= 10) {
+        deliveryPrice = 50;
+      } else if (miles <= 15) {
+        deliveryPrice = 65;
+      } else if (miles <= 20) {
+        deliveryPrice = 75;
+      } else if (miles <= 30) {
+        deliveryPrice = 100;
+      } else if (miles <= 40) {
+        deliveryPrice = 150;
+      } else {
+        alert("40+ miles: Contact us for delivery quote.");
+        deliveryPriceEl.textContent = "Contact Us for delivery quote";
+        totalPriceEl.textContent = "Contact Us for delivery quote";
+        return;
+      }
     }
 
     const total = basePrice + decorPrice + deliveryPrice;
