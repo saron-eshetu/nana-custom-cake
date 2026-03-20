@@ -144,12 +144,12 @@ main {
 .hero-image img {
   width: 100%;
   max-width: 360px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  height: auto;
+  border-radius: 0;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
   border: none;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center;
 }
 
 .section {
